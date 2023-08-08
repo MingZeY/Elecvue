@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const { spawn } = require('child_process');
 const path = require('path');
 
@@ -7,7 +7,8 @@ const createWindow = () => {
       width: 800,
       height: 600,
       webPreferences:{
-        nodeIntegration:true
+        nodeIntegration:true,
+        preload:path.join(__dirname,'preload.js'),//通过 perload scrpit 暴露 ipcRanderer 给该窗口，详见 preload.js
       }
     });
     if(process.env.NODE_ENV == 'development'){
@@ -25,4 +26,11 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
     createWindow();
+});
+
+ipcMain.on('default',(event,arg) => {
+  console.log(arg);
+  const stackTrace = {};
+  Error.captureStackTrace(stackTrace);
+  console.log(stackTrace.stack.replace('Error','Hello Trace'));
 });
