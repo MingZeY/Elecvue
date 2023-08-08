@@ -1,0 +1,8 @@
+/node_modules
+/package-lock.json
+/electron/out
+/electron/dist
+/electron/node_modules
+/electron/package-lock.json
+/vue/node_modules
+/vue/package-lock.json
