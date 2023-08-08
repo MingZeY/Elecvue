@@ -1,0 +1,14 @@
+{
+  "name": "elecvue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup":"npm -C ./vue run setup&npm -C ./electron run setup",
+    "dev":"set NODE_ENV=development&npm -C ./electron run start",
+    "build":"npm -C ./vue run build&npm -C ./electron run make"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
